@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}  <!-- 导入 static 模板标签 -->
+    <title>用户注册</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap 样式表 -->
+    <style>
+        body {
+            position: relative;
+            background-image: url("{% static 'icon/bg4.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+
+        /* 自定义额外样式 */
+        .form-signup {
+            max-width: 400px;
+            margin-left: 50px;{% comment %} margin: 0 auto; {% endcomment %}
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-signup h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-signup label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px; /* 调整标签和输入框之间的间距 */
+        }
+
+        .form-signup input[type="text"],
+        .form-signup input[type="password"],
+        .form-signup input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-signup .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 style="color: white; margin-left: 180px;">用户注册</h2>
+    <form method="post" class="form-signup">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">注册</button>
+    </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- 引入 Bootstrap JavaScript -->
+</body>
+</html>
+
+

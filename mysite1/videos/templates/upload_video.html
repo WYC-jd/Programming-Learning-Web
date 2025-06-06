@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}  <!-- 导入 static 模板标签 -->
+    <title>视频上传</title>
+    <style>
+        /* 页面背景色 */
+        body {
+            position: relative;
+            background-image: url("{% static 'icon/bg1.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 标题样式 */
+        h2 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* 表单容器样式 */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-left: 650px;
+        }
+
+        /* 每个表单字段 */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        /* 标签样式 */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* 输入框和下拉框样式 */
+        input[type="text"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* 按钮样式 */
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="margin-left: 530px;">视频上传</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- 自定义表单字段 -->
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">视频标题:</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.video_file.id_for_label }}">视频文件:</label>
+            {{ form.video_file }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.category.id_for_label }}">视频分类:</label>
+            {{ form.category }}
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">上传</button>
+        </div>
+    </form>
+</body>
+</html>

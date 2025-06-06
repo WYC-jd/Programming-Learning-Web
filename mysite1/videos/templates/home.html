@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频网站主页</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'videos/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="{% url 'home' %}">主页</a>
+            <a href="{% url 'video_list' %}">视频列表</a>
+            <a href="{% url 'upload_video' %}">上传视频</a>
+            <a href="{% url 'register' %}">注册</a>
+            <a href="{% url 'login' %}">登录</a>
+        </div>
+    </nav>
+    <header>
+        <h1>欢迎来到编程学习视频网站</h1>
+        <p>找到您喜欢的视频，成为编程大佬！</p>
+        <a href="{% url 'upload_video' %}" class="btn">上传你的视频</a>
+    </header>
+    <div class="container">
+        <h2>最新视频</h2>
+        <ul class="video-list">
+            {% for video in videos %}
+                <li>
+                    <h3><a>{{ video.title }}</a></h3>
+                    <p>{{ video.description }}</p>
+                    {% if video.file %}
+                        <video width="320" height="240" controls>
+                            <source src="{{ video.file.url }}" type="video/mp4">
+                            您的浏览器不支持HTML5视频。
+                        </video>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>当前没有视频。</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
